@@ -38,9 +38,7 @@ with open(csvpath) as csvfile:
     for row in csv_reader:
         Total_Count += 1
         Net += int(row[1])
-    
         Date.append(row[0])
-
         Net_Change = int(row[1]) - previous_row
         Monthly_Change.append(Net_Change)  
         previous_row = int(row[1])
@@ -54,11 +52,11 @@ with open(csvpath) as csvfile:
         if int(row[1]) < Greatest_Decrease:
             Greatest_Decrease = int(row[1])
             Greatest_Decrease_Month = row[0]
-
-        Average = round(sum(Monthly_Change)/ len(Monthly_Change), 2)
-
+         
         Max = max(Monthly_Change)
         Min = min(Monthly_Change)
+
+        Average = round(sum(Monthly_Change)/ len(Monthly_Change), 2)
 
 print("Financial Analysis")
 print("----------------------------------------------------------")
@@ -68,7 +66,7 @@ print(f"Average_Change: {Average}")
 print(f"Greatest_Increase: {Greatest_Increase_Month}, ${Max}")
 print(f"Greatest_Decrease: {Greatest_Decrease_Month}, ${Min}")
 
-output_file = os.path.join("..", "PyBank", "Resources", "PyBank_Analysis.text")
+output_file = os.path.join("..", "PyBank", "Analysis", "PyBank_Analysis.text")
 
 with open(output_file, 'w') as txtfile:
 
