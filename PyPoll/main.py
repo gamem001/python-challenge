@@ -1,13 +1,7 @@
-#pybank
-
 import os
-
-# current_working_directory = os.getcwd()
-# print(current_working_directory)
-
-# Module for reading CSV files
 import csv
 
+#create new lists and counters
 vote_count = 0
 candidates_list = []
 total_votes = []
@@ -22,24 +16,27 @@ csvpath = os.path.join("..", "PyPoll", "Resources", "election_data.csv")
 with open(csvpath) as csvfile:
     csv_reader = csv.reader(csvfile, delimiter = ',')
     csv_header = next(csv_reader)
-    # print(f"CSV Header: {csv_header}")
-   
+
+    #find total votes   
     for row in csv_reader:
         vote_count += 1   
         candidates = (row[2])
+        #create unique group of candidates along with their total votes
         if candidates not in candidates_list:
             candidates_list.append(candidates)
             candidate_votes[candidates] = 0
         candidate_votes[candidates] = candidate_votes[candidates] + 1
-
+#find the candidate with the most votes
 potential_candidate = candidates_list[0]
 winning_votes = candidate_votes[potential_candidate]
 
+#top half of print statement
 print("Election Results")
 print("--------------------------------------")
 print(f"Total Votes: {vote_count}")
 print("--------------------------------------")
 
+#using key to print candidates along with thier percent votes and total votes
 for key in candidate_votes:
     print(f"{key}: {round(100 * candidate_votes[key]/vote_count, 2)}% ({candidate_votes[key]})")
     if candidate_votes[key] > winning_votes:
@@ -48,6 +45,7 @@ for key in candidate_votes:
 
 print(f"Winner: {potential_candidate} with {winning_votes} votes!")        
 
+#create output file and what to write on it
 output_file = os.path.join("..", "PyPoll", "Analysis", "PyPoll_Analysis.text")
 with open(output_file, 'w') as txtfile:
 
