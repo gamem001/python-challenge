@@ -1,5 +1,3 @@
-
-
 ## PyBank
 
 * In this project I use Python to analyze the financial records of a ficticious company. The dataset is only composed of two columns: "Date" and "Profits/Losses"
